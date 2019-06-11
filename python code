@@ -22,7 +22,19 @@ loopRate = 60  # sets max speed of main loop
 SCREENWIDTH = 7
 SCREENHEIGHT = 6 # sets size of screen/window
 assert SCREENWIDTH >= 4 and SCREENHEIGHT >= 4
-screen = P.display.set_mode(SCREENWIDTH, SCREENHEIGHT)  # creates window and game screen
+screen = P.display.set_mode(SCREENWIDTH, SCREENHEIGHT) # creates window and game screen
+
+DIFFICULTY = 1 #how many moves for the computer to look ahead
+
+SPACESIZE = 50
+
+WINDOWWIDTH = 640
+WINDOWHEIGHT = 480
+
+XMARGIN = int((WINDOWWIDTH - BOARDWIDTH * SPACESIZE) / 2)
+YMARGIN = int((WINDOWHEIGHT - BOARDHEIGHT * SPACESIZE) / 2)
+
+BGCOLOUR = ('undecided')
 
 # set variables for some colours if you want them RGB (0-255)
 WHITE = (255, 255, 255)
@@ -33,25 +45,35 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 HUMAN = 'human'
 COMPUTER = 'computer'
-REDPILERECT = pygame.Rect(int(SPACESIZE / 2), WINDOWHEIGHT - int(3 * SPACESIZE / 2), SPACESIZE, SPACESIZE)
-YELLOWPILERECT = pygame.Rect(WINDOWWIDTH - int(3 * SPACESIZE / 2), WINDOWHEIGHT - int(3 * SPACESIZE / 2), SPACESIZE, SPACESIZE)
-REDTOKENIMG = pygame.image.load('4row_red.png')
-REDTOKENIMG = pygame.transform.smoothscale(REDTOKENIMG, (SPACESIZE, SPACESIZE))
-YELLOWTOKENIMG = pygame.image.load('4row_yellow.png')
-YELLOWTOKENIMG = pygame.transform.smoothscale(YELLOWTOKENIMG, (SPACESIZE, SPACESIZE))
-BOARDIMG = pygame.image.load('4row_board.png')
-BOARDIMG = pygame.transform.smoothscale(BOARDIMG, (SPACESIZE, SPACESIZE))
 
-HUMANWINNERIMG = pygame.image.load('4row_humanwinner.png')
-COMPUTERWINNERIMG = pygame.image.load('4row_computerwinner.png')
-TIEWINNERIMG = pygame.image.load('4row_tie.png')
-WINNERRECT = HUMANWINNERIMG.get_rect()
-WINNERRECT.center = (int(WINDOWWIDTH / 2), int(WINDOWHEIGHT / 2))
+def main():
+    global CLOCK, DISPLAY, REDPILERECT, YELLOWPILERECT, REDTOKENIMG
+    global YELLOWTOKENIMG, BOARDIMG, ARROWIMG, ARROWRECT, HUMANWINNERIMG
+    global COMPUTERWINNERIMG, WINNERRECT, DRAWWINNERIMG
+    
+    pygame.init()
+    CLOCK = pygame.time.Clock()
+    DISPLAY = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+    
+    REDPILERECT = pygame.Rect(int(SPACESIZE / 2), WINDOWHEIGHT - int(3 * SPACESIZE / 2), SPACESIZE, SPACESIZE)
+    YELLOWPILERECT = pygame.Rect(WINDOWWIDTH - int(3 * SPACESIZE / 2), WINDOWHEIGHT - int(3 * SPACESIZE / 2), SPACESIZE, SPACESIZE)
+    REDTOKENIMG = pygame.image.load('4row_red.png')
+    REDTOKENIMG = pygame.transform.smoothscale(REDTOKENIMG, (SPACESIZE, SPACESIZE))
+    YELLOWTOKENIMG = pygame.image.load('4row_yellow.png')
+    YELLOWTOKENIMG = pygame.transform.smoothscale(YELLOWTOKENIMG, (SPACESIZE, SPACESIZE))
+    BOARDIMG = pygame.image.load('4row_board.png')
+    BOARDIMG = pygame.transform.smoothscale(BOARDIMG, (SPACESIZE, SPACESIZE))
 
-ARROWIMG = pygame.image.load('4row_arrow.png')
-ARROWRECT = ARROWIMG.get_rect()
-ARROWRECT.left = REDPILERECT.right + 10
-ARROWRECT.centery = REDPILERECT.centery
+    HUMANWINNERIMG = pygame.image.load('4row_humanwinner.png')
+    COMPUTERWINNERIMG = pygame.image.load('4row_computerwinner.png')
+    DRAWWINNERIMG = pygame.image.load('4row_draw.png')
+    WINNERRECT = HUMANWINNERIMG.get_rect()
+    WINNERRECT.center = (int(WINDOWWIDTH / 2), int(WINDOWHEIGHT / 2))
+
+    ARROWIMG = pygame.image.load('4row_arrow.png')
+    ARROWRECT = ARROWIMG.get_rect()
+    ARROWRECT.left = REDPILERECT.right + 10
+    ARROWRECT.centery = REDPILERECT.centery
 
 play = True  # controls whether to keep playing
 
