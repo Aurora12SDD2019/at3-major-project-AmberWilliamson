@@ -1,1 +1,2 @@
-Each of the files in here holds a certain section of the theory. The links provided hold the actual files to them, the IMGs are simply placeholders for files.
+Each of the files in here holds a certain section of the theory. The links provided hold the actual files to them, the IMGs are simply placeholders for files. The only exception to this is the Structure Chart because for some unknown reason the old file will not delete properly, the chart was created in Stile as LucidChart would not provide me with the necessary tools for a structure chart. The IMG that has been uploaded for the structure chart is my structure chart itself. The file is called "Structure Chart (The Image Is The Chart)" please ignore the "Structure Chart - Lucidchart Link" File.
+Thanks
